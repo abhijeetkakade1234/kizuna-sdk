@@ -1,0 +1,62 @@
+{
+  "name": "kizuna-sdk",
+  "version": "1.0.0",
+  "description": "KizunaSDK - Blockchain connectivity SDK for autonomous AI agents (ClawBot). Connect your bot to EVM chains with smart accounts, gasless transactions, AI trading, and more.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist",
+    "agentkit-core"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "clawbot",
+    "openclaw",
+    "blockchain",
+    "evm",
+    "smart-account",
+    "web3",
+    "nft",
+    "trading",
+    "ai",
+    "agent",
+    "autonomous",
+    "gasless",
+    "avalanche",
+    "polygon",
+    "ethereum",
+    "erc-4337"
+  ],
+  "author": "KizunaSDK Team",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.0",
+    "zod": "^3.23.0"
+  },
+  "peerDependencies": {
+    "ethers": "^6.0.0",
+    "viem": "^2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "ethers": {
+      "optional": true
+    },
+    "viem": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ethers": "^6.15.0",
+    "typescript": "^5.3.0",
+    "viem": "^2.0.0"
+  }
+}

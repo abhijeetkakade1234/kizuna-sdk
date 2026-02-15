@@ -1,0 +1,77 @@
+{
+  "name": "@0xgasless/agentkit",
+  "description": "0xGasless Agentkit - Gasless transactions and account abstraction toolkit",
+  "repository": "https://github.com/0xgasless/agentkit",
+  "version": "0.0.14",
+  "author": {
+    "name": "Permissionless Puter",
+    "email": "puter@prmsnls.xyz",
+    "url": "https://bento.me/puter"
+  },
+  "license": "Apache-2.0",
+  "main": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "lint": "biome lint --write src",
+    "format": "biome format --write src",
+    "check": "tsc --noEmit",
+    "test": "bunx jest --no-cache --testMatch='**/*_test.ts'",
+    "test:dry-run": "bun install && bun ci && bun publish --dry-run",
+    "test:e2e": "bunx jest --no-cache --testMatch=**/e2e.ts --coverageThreshold '{}'",
+    "test:types": "tsd --files src/tests/types.test-d.ts",
+    "clean": "rm -rf dist && rm -rf docs",
+    "docs": "bunx --yes typedoc --entryPoints ./src --entryPointStrategy expand --exclude ./src/tests/**/*.ts",
+    "docs:serve": "bunx serve ./docs",
+    "dev": "bun link && concurrently \"tsc --watch\" \"tsc-alias -w\"",
+    "build": "tsc --project ./tsconfig.json && tsc-alias -p ./tsconfig.json",
+    "prepare": "echo 'Skipping build - using pre-built dist folder'"
+  },
+  "dependencies": {
+    "@0xgasless/smart-account": "latest",
+    "@langchain/core": "^0.3.40",
+    "axios": "^1.7.9",
+    "merkletreejs": "^0.4.1",
+    "viem": "2",
+    "zod": "^3.23.8",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/jest": "^29.5.14",
+    "@types/secp256k1": "^4.0.6",
+    "@types/sqlite3": "^3.1.11",
+    "concurrently": "^8.2.2",
+    "jest": "^29.7.0",
+    "mock-fs": "^5.2.0",
+    "ts-jest": "^29.2.5",
+    "tsc-alias": "^1.8.10",
+    "tsd": "^0.31.2",
+    "typescript": "^5.7.2"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./actions/getAddressAction": {
+      "types": "./dist/types/actions/getAddressAction.d.ts",
+      "default": "./dist/actions/getAddressAction.js"
+    },
+    "./actions/getBalanceAction": {
+      "types": "./dist/types/actions/getBalanceAction.d.ts",
+      "default": "./dist/actions/getBalanceAction.js"
+    },
+    "./actions/smartTransferAction": {
+      "types": "./dist/types/actions/smartTransferAction.d.ts",
+      "default": "./dist/actions/smartTransferAction.js"
+    },
+    "./actions/DebridgeAction/swap": {
+      "types": "./dist/types/actions/DebridgeAction/swap.d.ts",
+      "default": "./dist/actions/DebridgeAction/swap.js"
+    }
+  }
+}
