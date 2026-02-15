@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Blockchain connectivity for ClawBot - Trade NFTs, manage wallets, AI trading",
   "author": "KizunaSDK Team",
-  "homepage": "https://github.com/your-repo/kizuna-sdk",
+  "homepage": "https://github.com/abhijeetkakade1234/kizuna-sdk",
   "platform": ["clawbot", "openclaw"],
   "commands": {
     "wallet": {
