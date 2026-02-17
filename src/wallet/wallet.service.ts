@@ -83,24 +83,24 @@ async function loadAgentKit(): Promise<boolean> {
   if (Agentkit && actions.getBalanceAction) return true;
 
   try {
-    const agentkitModule = await import('../agentkit-core/dist/index.js');
+    const agentkitModule = await import('../../agentkit-core/dist/index.js');
     Agentkit = agentkitModule.Agentkit;
-    
-    const addrModule = await import('../agentkit-core/dist/actions/getAddressAction.js');
+
+    const addrModule = await import('../../agentkit-core/dist/actions/getAddressAction.js');
     actions.getAddressAction = addrModule.GetAddressAction;
-    
-    const balModule = await import('../agentkit-core/dist/actions/getBalanceAction.js');
+
+    const balModule = await import('../../agentkit-core/dist/actions/getBalanceAction.js');
     actions.getBalanceAction = balModule.GetBalanceAction;
-    
-    const transModule = await import('../agentkit-core/dist/actions/smartTransferAction.js');
+
+    const transModule = await import('../../agentkit-core/dist/actions/smartTransferAction.js');
     actions.smartTransferAction = transModule.SmartTransferAction;
-    
-    const swapModule = await import('../agentkit-core/dist/actions/DebridgeAction/swap.js');
+
+    const swapModule = await import('../../agentkit-core/dist/actions/DebridgeAction/swap.js');
     actions.smartSwapAction = swapModule.SmartSwapAction;
-    
-    const sendModule = await import('../agentkit-core/dist/BaseActions/SendTransaction.js');
+
+    const sendModule = await import('../../agentkit-core/dist/BaseActions/SendTransaction.js');
     actions.sendTransactionAction = sendModule.SendTransactionAction;
-    
+
     return true;
   } catch (e) {
     console.error('Failed to load AgentKit:', e);
@@ -138,7 +138,7 @@ export class WalletService {
     }
 
     const walletConfig = this.config as WalletConfig;
-    
+
     if (!walletConfig.privateKey || !walletConfig.apiKey) {
       console.warn('Missing privateKey or API key - using stub');
       this.initialized = true;
@@ -163,7 +163,7 @@ export class WalletService {
       } else {
         this.address = await this.agentkit.getAddress();
       }
-      
+
       console.log('KizunaSDK initialized with address:', this.address);
     } catch (error) {
       console.error('Failed to initialize AgentKit:', error);
@@ -313,7 +313,7 @@ export class WalletService {
       if (params.slippage) swapParams.slippage = params.slippage;
 
       const result = await this.agentkit.run(new actions.smartSwapAction(), swapParams);
-      
+
       const hashMatch = result.match(/0x[a-fA-F0-9]{64}/);
       return {
         hash: hashMatch ? hashMatch[0] : result,
